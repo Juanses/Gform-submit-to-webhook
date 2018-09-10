@@ -1,8 +1,12 @@
 function onFormSubmit(e) {
   var comm = new CommunicationClass();
   var colnames = ["Nom du médecin","Numéro de la question","Motif du suivi"];
-  comm.sendtowebhook("https://hook.integromat.com/h1nm6yyw3qzpeo7akkt8nl6txnqubfcs",JSON.stringify(e.namedValues["Nom du médecin"]));
-  //Logger.log(e.namedValues);
+  var dataname = ["medecin","question","motif"];
+  var data = {};
+  for (i in colnames){
+    data[dataname[i]]=e.namedValues[colnames[i]][0]
+  }
+  comm.sendtowebhook("https://hook.integromat.com/h1nm6yyw3qzpeo7akkt8nl6txnqubfcs",data);
 }
 
 function myFunction(){
